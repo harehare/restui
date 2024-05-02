@@ -6,14 +6,24 @@ a CLI tool that can send HTTP requests with TUI.
 
 ## Features
 
--   Multiple collections can be created to manage requests.
--   Environment variables can be set in .env files.
--   Intuitive keyboard only control
+- Multiple collections can be created to manage requests.
+- Environment variables can be set in .env files.
+- Intuitive keyboard only control
 
 ## Installation
 
 ```bash
 $ brew install harehare/tap/restui
+```
+
+## Build
+
+```bash
+$ sbt "graalvm-native-image:packageBin"
+```
+
+```bash
+$ sbt assembly
 ```
 
 ## Usage

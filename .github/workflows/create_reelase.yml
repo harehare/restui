@@ -25,3 +25,9 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+      - name: Update formula
+        uses: "mislav/bump-homebrew-formula-action@v3"
+        with:
+          download-url: https://github.com/harehare/restui/releases/download/${{ steps.extract-version.outputs.tag-name }}/restui-${{ steps.extract-version.outputs.tag-name }}.tar.gz
+          formula-name: restui
+          homebrew-tap: harehare/homebrew-tap

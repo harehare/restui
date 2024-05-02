@@ -14,6 +14,7 @@ lazy val root = project
       "--verbose",
       "--no-fallback",
       "-H:+ReportExceptionStackTraces",
+      "-H:-CheckToolchain",
       "--initialize-at-build-time=scala.runtime.Statics$VM",
       "--initialize-at-build-time=scala.Symbol",
       "--initialize-at-build-time=scala.Symbol$",
@@ -70,11 +71,12 @@ lazy val root = project
       "org.scalatestplus" %% "scalacheck-1-17" % "3.2.17.0" % "test"
     ),
     ThisBuild / assemblyMergeStrategy := {
-      case PathList(ps @ _*) if ps.last endsWith ".html"       => MergeStrategy.first
-      case PathList(ps @ _*) if ps.last endsWith ".properties" => MergeStrategy.first
-      case PathList(ps @ _*) if ps.last endsWith ".class"      => MergeStrategy.first
-      case "application.conf"                                  => MergeStrategy.concat
-      case "unwanted.txt"                                      => MergeStrategy.discard
+      case PathList(ps @ _*) if ps.last endsWith ".html" => MergeStrategy.first
+      case PathList(ps @ _*) if ps.last endsWith ".properties" =>
+        MergeStrategy.first
+      case PathList(ps @ _*) if ps.last endsWith ".class" => MergeStrategy.first
+      case "application.conf"                             => MergeStrategy.concat
+      case "unwanted.txt"                                 => MergeStrategy.discard
       case x =>
         val oldStrategy = (ThisBuild / assemblyMergeStrategy).value
         oldStrategy(x)
